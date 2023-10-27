@@ -1,17 +1,43 @@
-import "regenerator-runtime"; /* for async await transpile */
-import "../../node_modules/boxicons/css/boxicons.min.css";
-import "../styles/main.scss";
-import Navigation from "./nav";
-import restaurants from "../public/data/DATA.json";
-import RestaurantList from "./main";
+import 'regenerator-runtime'; /* for async await transpile */
+import 'boxicons/css/boxicons.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+import '../styles/main.scss';
+import '../styles/responsive.scss';
+import 'animate.css';
+import AOS from 'aos';
+import App from './views/app';
+import 'aos/dist/aos.css';
+import './utils/mark-active-link';
+import swRegister from './utils/sw-register';
 
-const restaurantList = new RestaurantList();
-restaurantList.loadRestaurants(restaurants);
+AOS.init();
 
-restaurantList.showRestaurant();
-const readMoreButtons = document.querySelectorAll(".read-more-button");
-readMoreButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    restaurantList.readMore(button);
-  });
+const app = new App({
+  button: document.querySelector('#hamburger'),
+  drawer: document.querySelector('#drawer'),
+  content: document.querySelector('#main'),
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const preloader = document.querySelector('.preloader');
+
+  const hasPreloaderBeenShown = sessionStorage.getItem('preloaderShown');
+
+  if (!hasPreloaderBeenShown) {
+    setTimeout(() => {
+      preloader.style.display = 'none';
+      sessionStorage.setItem('preloaderShown', 'true');
+    }, 2000);
+  } else {
+    preloader.style.display = 'none';
+  }
+});
+
+window.addEventListener('hashchange', () => {
+  app.renderPage();
+});
+
+window.addEventListener('load', () => {
+  app.renderPage();
+  swRegister();
 });

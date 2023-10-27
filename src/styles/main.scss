@@ -1,15 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "poppins", sans-serif;
+  font-family: 'poppins', sans-serif;
   scroll-behavior: smooth;
 }
 
 html {
-  background-color: rgb(249, 249, 249);
+  background-color: rgb(253, 253, 253);
+  overflow-x: hidden;
 }
 
 .skip-link {
@@ -39,7 +40,7 @@ header {
   left: 0;
   width: 100%;
   padding: 1.3rem 5%;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(35px);
   display: flex;
   flex-wrap: wrap;
@@ -55,8 +56,11 @@ header {
   }
 
   nav {
-    display: none;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
     width: 100%;
+    transition: max-height 1s ease-in-out, opacity 1s ease-in-out;
 
     ul {
       width: 100%;
@@ -84,7 +88,7 @@ header {
           }
 
           &:after {
-            content: "";
+            content: '';
             position: absolute;
             bottom: -0.2rem;
             left: 0;
@@ -111,6 +115,8 @@ header {
 
 nav.drawer {
   display: flex;
+  opacity: 1;
+  max-height: 1000px;
 }
 
 .hero {
@@ -129,8 +135,13 @@ nav.drawer {
   margin: 0 5%;
   color: #ffffff;
 
+  h2 {
+    font-size: 5vh;
+    line-height: 1.2em;
+  }
+
   p {
-    font-size: 1.1rem;
+    font-size: 2.5vh;
   }
 }
 
@@ -152,7 +163,6 @@ h2 {
   font-size: 1.3rem;
   font-weight: 600;
   text-align: center;
-  margin-bottom: 0.5em;
 }
 
 section {
@@ -173,7 +183,7 @@ section {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.2rem;
-  margin: 2rem 5%;
+  margin: 3rem 5%;
 
   .restaurant-item {
     display: flex;
@@ -187,9 +197,9 @@ section {
     justify-content: center;
     flex-direction: column;
     border-radius: 1rem;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+      rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    background-color: rgb(253, 253, 253);
     overflow: hidden;
     width: 100%;
     height: auto;
@@ -247,11 +257,9 @@ section {
 }
 
 .card:hover {
-  box-shadow: rgba(6, 24, 44, 0.2) 0px 0px 0px 2px,
-    rgba(6, 24, 44, 0.4) 0px 4px 6px -1px,
-    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   .restaurant-img {
-    transform: scale(1.25);
+    transform: scale(1.1);
   }
 }
 
@@ -259,22 +267,169 @@ section {
   font-weight: 500;
 }
 
-.hide {
-  display: none;
+.text-desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
-.read-more-button {
-  font-weight: 600;
-  padding: 0.75rem 2rem;
+.group-button {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 0.5rem;
+}
+
+.detail-button,
+.like-button {
+  font-size: 1rem;
+  height: 100%;
+  display: flex;
   color: #1e1e1e;
   background-color: #ffffff;
-  margin-top: auto;
   border-radius: 0.4rem;
   border: 0.1rem solid #1e1e1e;
-  align-self: flex-start;
-  &:hover {
+  align-items: center;
+  justify-content: center;
+  &:hover,
+  &:hover .likeButton {
     background-color: #1e1e1e;
     color: #ffffff;
+  }
+}
+
+.detail-button {
+  font-weight: 600;
+  flex-grow: 1;
+  text-decoration: none;
+}
+
+.like-button {
+  font-size: 1.3rem;
+  color: rgb(216, 216, 216);
+  aspect-ratio: 1/1;
+}
+
+.likeButton {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  height: 100%;
+  width: 100%;
+}
+
+.favorite-section {
+  margin-top: 86.4px;
+  padding-top: 1rem;
+  h2 {
+    margin: 0 5%;
+    font-size: 1.5rem;
+    color: #1e1e1e;
+    font-weight: 700;
+    text-align: center;
+    padding: 0.5em 0;
+    border-bottom: 0.2rem solid #1e1e1e;
+  }
+}
+
+.restaurant {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  img {
+    height: 50vh;
+    width: 100%;
+    object-fit: cover;
+  }
+  h3 {
+    margin: 0 5%;
+    font-size: 1.4rem;
+  }
+
+  h4 {
+    border-bottom: 0.1rem solid #1e1e1e;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #373737;
+  }
+
+  .title-like-container {
+    display: flex;
+    margin: 0 5%;
+    h3 {
+      margin: auto;
+      flex: 1;
+    }
+    button {
+      padding: 0 0.5rem;
+      aspect-ratio: 1/1;
+    }
+  }
+
+  .restaurant__overview {
+    margin: 0 5%;
+    margin-top: 0.2rem;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
+    border: 0.1rem solid #1e1e1e;
+  }
+  .restaurant__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0 5%;
+    .resto-info,
+    .resto-menu,
+    .resto-review {
+      padding: 0.8rem;
+      border-radius: 0.4rem;
+      border: 0.1rem solid #1e1e1e;
+    }
+
+    .resto-menu {
+      h4 {
+        margin-bottom: 1rem;
+      }
+      h5 {
+        font-size: 0.9rem;
+      }
+      li {
+        font-size: 0.9rem;
+        margin-left: 1.5rem;
+      }
+    }
+
+    .makanan-minuman {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .makanan,
+    .minuman {
+      padding: 0.8rem;
+      border-radius: 0.4rem;
+      border: 0.1rem solid #1e1e1e;
+    }
+
+    ul {
+      h6,
+      p {
+        font-size: 0.9rem;
+      }
+      p {
+        padding-bottom: 0.8em;
+        margin-bottom: 0.8em;
+        border-bottom: 0.05rem solid #1e1e1e30;
+      }
+    }
   }
 }
 
@@ -288,94 +443,75 @@ footer {
   font-weight: 600;
 }
 
-/* Media Query for tablet */
-@media screen and (min-width: 768px) {
-  .logo {
-    font-size: 1.7rem;
+// loader
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid black;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: black transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
   }
-
-  .hero-text h2 {
-    font-size: 1.5rem;
-  }
-
-  .hero-text p {
-    font-size: 1.3rem;
-  }
-
-  .restaurant-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin: 0 5%;
-  }
-
-  section {
-    padding: 2rem 0;
+  100% {
+    transform: rotate(360deg);
   }
 }
 
-/* Media Query for desktop */
-@media screen and (min-width: 1024px) {
-  .logo {
-    font-size: 2rem;
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.loader {
+  border: 16px solid #1e1e1e;
+  border-top: 16px solid #d7d7cf;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 3s linear infinite;
+}
+
+.box {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-
-  header {
-    padding: 1.3rem 10%;
-  }
-
-  .menu {
-    display: none;
-  }
-  header {
-    nav {
-      display: flex;
-      width: auto;
-      ul {
-        display: flex;
-        flex-direction: row;
-        gap: 3rem;
-        li {
-          padding: 0;
-          a {
-            font-size: 1.2rem;
-          }
-        }
-      }
-    }
-  }
-
-  .hero-text {
-    margin: 0 10%;
-
-    h2 {
-      font-size: 1.7rem;
-    }
-
-    p {
-      font-size: 1.5rem;
-    }
-  }
-
-  #main-content {
-    font-size: 1.7rem;
-    margin: 0 10%;
-    margin-bottom: 2rem;
-  }
-
-  .restaurant-list {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin: 0 10%;
-  }
-
-  .card {
-    .restaurant-img {
-      height: 200px;
-    }
-  }
-
-  footer {
-    font-size: 1.2rem;
-    padding: 1.5em 0;
+  100% {
+    transform: rotate(360deg);
   }
 }

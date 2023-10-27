@@ -1,0 +1,122 @@
+/* Media Query for tablet */
+@media screen and (min-width: 768px) {
+  .logo {
+    font-size: 1.7rem;
+  }
+
+  .hero-text {
+    h2 {
+      font-size: 6vh;
+      margin-bottom: 0.2em;
+    }
+
+    p {
+      font-size: 3vh;
+    }
+  }
+
+  .restaurant-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 3rem 5% 0 5%;
+  }
+
+  section {
+    padding: 2rem 0;
+  }
+
+  .makanan-minuman {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Media Query for desktop */
+@media screen and (min-width: 1024px) {
+  .logo {
+    font-size: 2rem;
+  }
+
+  header {
+    padding: 1.3rem 10%;
+  }
+
+  .menu {
+    display: none;
+  }
+  header {
+    nav {
+      opacity: 1;
+      display: flex;
+      width: auto;
+      overflow: visible;
+      ul {
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
+        li {
+          padding: 0;
+          a {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+
+  .hero-text {
+    margin: 0 10%;
+
+    h2 {
+      font-size: 8vh;
+    }
+
+    p {
+      font-size: 4vh;
+    }
+  }
+
+  .main-section {
+    margin-top: 3rem;
+  }
+
+  .favorite-section {
+    h2 {
+      margin: 0 10%;
+    }
+  }
+
+  #main-content {
+    font-size: 1.7rem;
+    margin: 0 10%;
+    margin-bottom: 2rem;
+  }
+
+  .restaurant-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 4rem 10% 2rem 10%;
+  }
+
+  .card {
+    .restaurant-img {
+      height: 200px;
+    }
+  }
+
+  .restaurant {
+    img {
+      height: 100vh;
+    }
+
+    .title-like-container,
+    .restaurant__overview,
+    .restaurant__info {
+      margin: 0 10%;
+    }
+  }
+
+  footer {
+    font-size: 1.2rem;
+    padding: 1.5em 0;
+  }
+}
