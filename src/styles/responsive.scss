@@ -6,12 +6,12 @@
 
   .hero-text {
     h2 {
-      font-size: 6vh;
+      font-size: 3rem;
       margin-bottom: 0.2em;
     }
 
     p {
-      font-size: 3vh;
+      font-size: 1.5rem;
     }
   }
 
@@ -32,6 +32,10 @@
 
 /* Media Query for desktop */
 @media screen and (min-width: 1024px) {
+  .hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+      url(../public/images/heros/hero-image_4-large.jpg);
+  }
   .logo {
     font-size: 2rem;
   }
@@ -67,11 +71,11 @@
     margin: 0 10%;
 
     h2 {
-      font-size: 8vh;
+      font-size: 4rem;
     }
 
     p {
-      font-size: 4vh;
+      font-size: 2rem;
     }
   }
 

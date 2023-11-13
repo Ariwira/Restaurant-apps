@@ -1,43 +1,26 @@
+/* eslint-disable no-new */
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
-import { restaurantItemTemplate } from '../templates/template-creator';
-import LikeButtonInitiator from '../../utils/like-button-initiator';
+import FavoriteRestaurantSearchPresenter from './favorite-restaurants/favorite-restaurant-search-presenter';
+import FavoriteRestaurantSearchView from './favorite-restaurants/favorite-restaurant-search-view';
+import FavoriteRestaurantShowPresenter from './favorite-restaurants/favorite-restaurant-show-presenter';
 
-export default class Favorite {
-  static async render() {
-    return `
-    <div class="favorite-section">
-        <h2 tabindex="0"
-        data-aos="fade-up"
-        data-aos-anchor-placement="center-bottom"
-        data-aos-duration="1000" >Restaurant Favoritmu</h2>
-        <div id="restaurantList" class="restaurant-list"></div>
-    </div>
-    `;
-  }
+const view = new FavoriteRestaurantSearchView();
 
-  static async afterRender() {
-    const restaurants = await FavoriteRestaurantIdb.getAllRestaurants();
-    const restaurantContainer = document.querySelector('#restaurantList');
+const Favorite = {
+  async render() {
+    return view.getTemplate();
+  },
 
-    if (restaurants.length === 0) {
-      restaurantContainer.innerHTML =
-        'Tidak ada restoran favorit yang tersimpan.';
-    } else {
-      restaurants.forEach((restaurant) => {
-        restaurantContainer.innerHTML += restaurantItemTemplate(restaurant);
-        const likeButton = new LikeButtonInitiator({
-          likeButtonContainerId: `#likeButtonContainer_${restaurant.id}`,
-          restaurant: {
-            id: restaurant.id,
-            name: restaurant.name,
-            city: restaurant.city,
-            description: restaurant.description,
-            pictureId: restaurant.pictureId,
-            rating: restaurant.rating,
-          },
-        });
-        likeButton.renderButton();
-      });
-    }
-  }
-}
+  async afterRender() {
+    new FavoriteRestaurantShowPresenter({
+      view,
+      favoriteRestaurants: FavoriteRestaurantIdb,
+    });
+    new FavoriteRestaurantSearchPresenter({
+      view,
+      favoriteRestaurants: FavoriteRestaurantIdb,
+    });
+  },
+};
+
+export default Favorite;

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import 'regenerator-runtime'; /* for async await transpile */
 import 'boxicons/css/boxicons.min.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -9,6 +10,8 @@ import App from './views/app';
 import 'aos/dist/aos.css';
 import './utils/mark-active-link';
 import swRegister from './utils/sw-register';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 AOS.init();
 

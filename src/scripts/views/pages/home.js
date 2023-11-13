@@ -18,9 +18,6 @@ export default class Home {
     <h2
       id="main-content"
       tabindex="0"
-      data-aos="fade-up"
-      data-aos-anchor-placement="center-bottom"
-      data-aos-duration="1000"
     >
       Explore Restaurant
     </h2>

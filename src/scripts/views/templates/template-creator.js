@@ -2,16 +2,17 @@ import CONFIG from '../../globals/config';
 
 export function restaurantItemTemplate(restaurant) {
   return `
-<div class="card" tabindex="0" data-aos="fade-up" data-aos-duration="1000" >
+  <div class="restaurant-item" tabindex="0">
+<div class="card" tabindex="0" >
     <div class="container-img">
-        <img class="restaurant-img" src="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}" alt="${restaurant.name}">
+        <img class="restaurant-img lazyload" src="${CONFIG.BASE_IMAGE_URL_SMALL}${restaurant.pictureId}" alt="${restaurant.name}"  width="360" height="270">
     </div>
     <div class="rating">
         <span class='bx bxs-star star-icon' aria-label="rating"></span>
         <p style="display: inline">${restaurant.rating}</p>
     </div>
     <div class="card-text">
-        <h3>${restaurant.name}</h3>
+        <h3 class="restaurant__title">${restaurant.name}</h3>
         <span class="city">, ${restaurant.city}</span>
         <p class="text-desc">${restaurant.description}</p>
     </div>
@@ -19,15 +20,16 @@ export function restaurantItemTemplate(restaurant) {
     <a href="#/detail/${restaurant.id}" class="detail-button" >Detail</a>
     <div id="likeButtonContainer_${restaurant.id}" class="like-button"></div>
     </div>
+</div>
 </div>`;
 }
 
 export function restaurantDetailTemplate(restaurant) {
   return `  <img class="restaurant__poster" src="${
-    CONFIG.BASE_IMAGE_URL + restaurant.pictureId
-  }" alt="${restaurant.name}" />
+    CONFIG.BASE_IMAGE_URL_LARGE + restaurant.pictureId
+  }" alt="${restaurant.name}" width="1210" height="810"/>
         <div class="title-like-container">
-            <h3 tabindex="0">${restaurant.name}</h3>
+            <h3 class="restaurant__title" tabindex="0">${restaurant.name}</h3>
             <div id="likeButtonContainer"></div>
         </div>
         <div class="restaurant__overview">
@@ -78,7 +80,7 @@ export function restaurantDetailTemplate(restaurant) {
 
 export function createLikeButtonTemplate() {
   return `
-    <button aria-label="like this movie" class="like likeButton">
+    <button aria-label="like this restaurant" id="likeButton" class="like likeButton">
       <i class="fa fa-heart-o" aria-hidden="true"></i>
     </button>
   `;
@@ -86,7 +88,7 @@ export function createLikeButtonTemplate() {
 
 export function createLikedButtonTemplate() {
   return `
-  <button aria-label="unlike this movie" class="like likeButton">
+  <button aria-label="unlike this restaurant" id="likeButton" class="like likeButton">
       <i class="fa fa-heart" aria-hidden="true"></i>
     </button>
   `;
