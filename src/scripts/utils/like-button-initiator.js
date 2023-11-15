@@ -12,11 +12,19 @@ class LikeButtonInitiator {
 
   async renderButton() {
     const { id } = this._restaurant;
+    const container = document.querySelector(this._likeButtonContainerId);
+
+    if (!container) {
+      console.error(
+        `Element with ID ${this._likeButtonContainerId} not found in the DOM.`,
+      );
+      return;
+    }
 
     if (await this._isRestaurantExist(id)) {
-      this._renderLiked();
+      this._renderLiked(container);
     } else {
-      this._renderLike();
+      this._renderLike(container);
     }
   }
 
@@ -25,8 +33,7 @@ class LikeButtonInitiator {
     return !!restaurant;
   }
 
-  _renderLike() {
-    const container = document.querySelector(this._likeButtonContainerId);
+  _renderLike(container) {
     container.innerHTML = createLikeButtonTemplate();
 
     const likeButton = container.querySelector('.likeButton');
@@ -36,8 +43,7 @@ class LikeButtonInitiator {
     });
   }
 
-  _renderLiked() {
-    const container = document.querySelector(this._likeButtonContainerId);
+  _renderLiked(container) {
     container.innerHTML = createLikedButtonTemplate();
 
     const likeButton = container.querySelector('.likeButton');
