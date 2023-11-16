@@ -5,7 +5,7 @@ export function restaurantItemTemplate(restaurant) {
   <div class="restaurant-item" tabindex="0">
 <div class="card" tabindex="0" >
     <div class="container-img">
-        <img class="restaurant-img lazyload" src="${CONFIG.BASE_IMAGE_URL_SMALL}${restaurant.pictureId}" alt="${restaurant.name}"  width="360" height="270">
+        <img class="restaurant-img lazyload" data-src="${CONFIG.BASE_IMAGE_URL_SMALL}${restaurant.pictureId}" alt="${restaurant.name}"  width="360" height="270">
     </div>
     <div class="rating">
         <span class='bx bxs-star star-icon' aria-label="rating"></span>
