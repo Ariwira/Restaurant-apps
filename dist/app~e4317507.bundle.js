@@ -141,24 +141,32 @@ var LikeButtonInitiator = /*#__PURE__*/function () {
     key: "renderButton",
     value: function () {
       var _renderButton = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var id;
+        var id, container;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               id = this._restaurant.id;
-              _context.next = 3;
-              return this._isRestaurantExist(id);
-            case 3:
-              if (!_context.sent) {
-                _context.next = 7;
+              container = document.querySelector(this._likeButtonContainerId);
+              if (container) {
+                _context.next = 5;
                 break;
               }
-              this._renderLiked();
-              _context.next = 8;
-              break;
+              console.error("Element with ID ".concat(this._likeButtonContainerId, " not found in the DOM."));
+              return _context.abrupt("return");
+            case 5:
+              _context.next = 7;
+              return this._isRestaurantExist(id);
             case 7:
-              this._renderLike();
-            case 8:
+              if (!_context.sent) {
+                _context.next = 11;
+                break;
+              }
+              this._renderLiked(container);
+              _context.next = 12;
+              break;
+            case 11:
+              this._renderLike(container);
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -195,9 +203,8 @@ var LikeButtonInitiator = /*#__PURE__*/function () {
     }()
   }, {
     key: "_renderLike",
-    value: function _renderLike() {
+    value: function _renderLike(container) {
       var _this = this;
-      var container = document.querySelector(this._likeButtonContainerId);
       container.innerHTML = (0,_views_templates_template_creator__WEBPACK_IMPORTED_MODULE_1__/* .createLikeButtonTemplate */ .ty)();
       var likeButton = container.querySelector('.likeButton');
       likeButton.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
@@ -217,9 +224,8 @@ var LikeButtonInitiator = /*#__PURE__*/function () {
     }
   }, {
     key: "_renderLiked",
-    value: function _renderLiked() {
+    value: function _renderLiked(container) {
       var _this2 = this;
-      var container = document.querySelector(this._likeButtonContainerId);
       container.innerHTML = (0,_views_templates_template_creator__WEBPACK_IMPORTED_MODULE_1__/* .createLikedButtonTemplate */ .ci)();
       var likeButton = container.querySelector('.likeButton');
       likeButton.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {

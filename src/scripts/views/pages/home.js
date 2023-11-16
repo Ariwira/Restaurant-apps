@@ -29,8 +29,9 @@ export default class Home {
     const restaurants = await RestaurantSource.restaurantList();
     const restaurantList = document.querySelector('#restaurantList');
     restaurants.forEach((restaurant) => {
-      console.log(restaurant.id);
-      restaurantList.innerHTML += restaurantItemTemplate(restaurant);
+      const restaurantItem = document.createElement('div');
+      restaurantItem.innerHTML = restaurantItemTemplate(restaurant);
+      restaurantList.appendChild(restaurantItem);
 
       const likeButton = new LikeButtonInitiator({
         likeButtonContainerId: `#likeButtonContainer_${restaurant.id}`,
