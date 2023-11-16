@@ -4,7 +4,7 @@ import { restaurantItemTemplate } from '../templates/template-creator';
 
 export default class Home {
   static render() {
-    return `<section class="hero" role="img" aria-label="hero image">
+    return `<section class="hero" role="img" aria-label="hero-image">
     <div class="hero-text">
       <h2 class="animate__animated animate__fadeInUp animate__delay-1s">
         Welcome to TasteJourney
