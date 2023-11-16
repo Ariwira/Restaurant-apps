@@ -29,7 +29,7 @@ var Home = /*#__PURE__*/function () {
   _createClass(Home, null, [{
     key: "render",
     value: function render() {
-      return "<section class=\"hero\" role=\"img\" aria-label=\"hero image\">\n    <div class=\"hero-text\">\n      <h2 class=\"animate__animated animate__fadeInUp animate__delay-1s\">\n        Welcome to TasteJourney\n      </h2>\n      <p class=\"animate__animated animate__zoomIn animate__delay-2s\">\n        Your Premier Destination to Explore Global Culinary Delights.\n      </p>\n    </div>\n  </section>\n  <section class=\"main-section\">\n    <h2\n      id=\"main-content\"\n      tabindex=\"0\"\n    >\n      Explore Restaurant\n    </h2>\n    <div id=\"restaurantList\" class=\"restaurant-list\"></div>\n    </section>";
+      return "<section class=\"hero\" role=\"img\" aria-label=\"hero-image\">\n    <div class=\"hero-text\">\n      <h2 class=\"animate__animated animate__fadeInUp animate__delay-1s\">\n        Welcome to TasteJourney\n      </h2>\n      <p class=\"animate__animated animate__zoomIn animate__delay-2s\">\n        Your Premier Destination to Explore Global Culinary Delights.\n      </p>\n    </div>\n  </section>\n  <section class=\"main-section\">\n    <h2\n      id=\"main-content\"\n      tabindex=\"0\"\n    >\n      Explore Restaurant\n    </h2>\n    <div id=\"restaurantList\" class=\"restaurant-list\"></div>\n    </section>";
     }
   }, {
     key: "afterRender",
@@ -104,10 +104,10 @@ function restaurantDetailTemplate(restaurant) {
   }).join(''), "\n                </ul>\n            </div>\n        </div>\n        ");
 }
 function createLikeButtonTemplate() {
-  return "\n    <button aria-label=\"like this restaurant\" id=\"likeButton\" class=\"like likeButton\">\n      <i class=\"fa fa-heart-o\" aria-hidden=\"true\"></i>\n    </button>\n  ";
+  return "\n    <button aria-label=\"like this restaurant\" class=\"like likeButton\">\n      <i class=\"fa fa-heart-o\" aria-hidden=\"true\"></i>\n    </button>\n  ";
 }
 function createLikedButtonTemplate() {
-  return "\n  <button aria-label=\"unlike this restaurant\" id=\"likeButton\" class=\"like likeButton\">\n      <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>\n    </button>\n  ";
+  return "\n  <button aria-label=\"unlike this restaurant\" class=\"like likeButton\">\n      <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>\n    </button>\n  ";
 }
 var loader = {
   show: function show() {
