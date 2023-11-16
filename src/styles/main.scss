@@ -81,6 +81,7 @@ header {
           position: relative;
           padding: 0.5rem 0;
           transition: color 0.3s ease;
+          min-height: 44px;
 
           &.active {
             bottom: 0;
